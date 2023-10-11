@@ -40,16 +40,19 @@ const postRegisterUser = async (req, res) => {
   }
 
   // check user exist
-  const user = await User.findOne({ phone_number: phone_number });
-
-  if (user) {
-    console.log(user)
-    return res.render("register", {
-      message: "User already exist",
-    });
+  try {
+    const user = await User.findOne({ phone_number: phone_number });
+    if (user) {
+      console.log(user)
+      return res.render("register", {
+        message: "User already exist",
+      });
+    }
+  } catch (error) {
+    console.log(error)
   }
 
-  User.create({
+  await User.create({
     full_name,
     phone_number,
     meter_number,
