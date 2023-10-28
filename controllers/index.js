@@ -1,5 +1,6 @@
 const Tenant = require("../models/tenantModel");
-const User = require("../models/userModel")
+const User = require("../models/userModel");
+const { sendSms } = require("../utils/sendSms");
 
 const getLanding = (req, res) => {
   return res.render("landing");
@@ -110,6 +111,7 @@ const postBuyUnit = (req, res)=>{
 
   const { unit_amount } = req.body
   const user = req.user
+  /* sendSms(`Hello ${user.full_name} you bought ${unit_amount} `, "+255776607453") */
   return res.render("buy_unit", {
     user: user,
     message: `You succefully bought units for ${unit_amount} shillings`

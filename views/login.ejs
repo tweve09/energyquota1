@@ -8,6 +8,10 @@
     body{
         background-color: #f8f9fa;
       }
+    .tenant-link{
+      display: flex;
+      justify-content: right;
+    }
     </style>
 </head>
 <body>
@@ -36,7 +40,10 @@
                       </div>
                       <button class="btn btn-success" type="submit">Login</button>
                 </form>
-                <a href="/users/register" style="text-decoration: none;">Don't have an account.Register here!</a>
+                <a href="/users/register" style="text-decoration: none; color: steelblue;">Don't have an account.Register here!</a>
+                <div class="tenant-link">
+                  <a href="/tenant/login" style="text-decoration: none; color: steelblue;">Tenant.Login here</a>
+                </div>
             </div>  
         </div>
         </div>
