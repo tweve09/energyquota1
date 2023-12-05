@@ -11,57 +11,135 @@
     />
     <style>
       body {
-        background-color: #f8f9fa;
+        background-color: whitesmoke;
+      }
+      a {
+        text-decoration: none;
+      }
+      .landing-container {
+        display: flex;
+      }
+      .owner-div {
+        width: 50%;
+        text-align: center;
+      }
+      .owner-div-in {
+        background: linear-gradient(
+          to bottom,
+          rgba(225, 250, 201, 1),
+          rgba(225, 250, 201, 0.2)
+        );
+        width: 60%;
+        margin: auto;
+        margin-top: 80px;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.3);
+      }
+      .tenant-div {
+        width: 50%;
+        text-align: center;
+      }
+
+      .btn-register {
+        background-color: white;
+        color: rgb(18, 56, 69);
+        padding: 10px;
+        border-radius: 6px;
+        border: 2px solid #113946;
+        width: 90px;
+      }
+      .btn-register:hover{
+        background-color: #113946;
+        color: white;
+      }
+
+      .btn-login {
+        background-color: #113946;
+        color: white;
+        padding: 10px;
+        width: 90px;
+      }
+
+      .btn-login:hover{
+        background-color: white;
+        color: #113946;
+      }
+
+      @media screen and (max-width: 768px) {
+        .landing-container {
+          display: block;
+        }
+        .owner-div {
+          width: 100%;
+        }
+
+        .owner-div-in {
+          width: 80%;
+          margin-top: 20px;
+        }
+
+        .tenant-div {
+          width: 100%;
+        }
       }
     </style>
   </head>
   <body>
     <div>
-      <div class="text-center p-2" style="background-color: #008894">
-        <h2 style="color: white">EnergyQuota</h2>
-        <p style="font-style: italic; color: white">
-          Smart electrical energy meter
+      <div class="text-center p-2" style="background-color: #c7e9b0; height: 90px;" sty>
+        <h2 style="color: #113946">EnergyQuota</h2>
+        <p style="font-style: italic; color: #113946">
+          Smart electrical meter for multi tenants
         </p>
       </div>
-
-      <div class="row">
-        <div class="col-lg-6 text-center mt-2">
-          <h3 style="color: gray">House Owner</h3>
-          <div class="m-2">
-            <svg
-              fill="#008894"
-              xmlns="http://www.w3.org/2000/svg"
-              height="3.5em"
-              viewBox="0 0 576 512"
-            >
-              <!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
-              <path
-                d="M543.8 287.6c17 0 32-14 32-32.1c1-9-3-17-11-24L512 185V64c0-17.7-14.3-32-32-32H448c-17.7 0-32 14.3-32 32v36.7L309.5 7c-6-5-14-7-21-7s-15 1-22 8L10 231.5c-7 7-10 15-10 24c0 18 14 32.1 32 32.1h32V448c0 35.3 28.7 64 64 64H448.5c35.5 0 64.2-28.8 64-64.3l-.7-160.2h32zM288 160a64 64 0 1 1 0 128 64 64 0 1 1 0-128zM176 400c0-44.2 35.8-80 80-80h64c44.2 0 80 35.8 80 80c0 8.8-7.2 16-16 16H192c-8.8 0-16-7.2-16-16z"
-              />
-            </svg>
-          </div>
-          <div>
-            <a class="btn btn-primary" href="/users/register">Register</a>
-            <a class="btn btn-success" href="/users/login">Login</a>
+      <div class="landing-container">
+        <div class="owner-div">
+          <div class="owner-div-in">
+            <div class="rounded bg-light p-1">
+              <h3 style="color: #113946">House Owner</h3>
+            </div>
+            <div class="m-2">
+              <svg
+                fill="#113946"
+                xmlns="http://www.w3.org/2000/svg"
+                height="3.5em"
+                viewBox="0 0 576 512"
+              >
+                <!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+                <path
+                  d="M543.8 287.6c17 0 32-14 32-32.1c1-9-3-17-11-24L512 185V64c0-17.7-14.3-32-32-32H448c-17.7 0-32 14.3-32 32v36.7L309.5 7c-6-5-14-7-21-7s-15 1-22 8L10 231.5c-7 7-10 15-10 24c0 18 14 32.1 32 32.1h32V448c0 35.3 28.7 64 64 64H448.5c35.5 0 64.2-28.8 64-64.3l-.7-160.2h32zM288 160a64 64 0 1 1 0 128 64 64 0 1 1 0-128zM176 400c0-44.2 35.8-80 80-80h64c44.2 0 80 35.8 80 80c0 8.8-7.2 16-16 16H192c-8.8 0-16-7.2-16-16z"
+                />
+              </svg>
+            </div>
+            <div>
+              <a class="btn btn-register" href="/users/register">Register</a>
+              <a class="btn btn-login" href="/users/login">Login</a>
+            </div>
           </div>
         </div>
-        <div class="col-lg-6 text-center p-2 mt-2">
-          <h3 style="color: gray">Tenant</h3>
-          <div class="m-2">
-            <svg
-              fill="#008894"
-              xmlns="http://www.w3.org/2000/svg"
-              height="3.5em"
-              viewBox="0 0 448 512"
-            >
-              <!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
-              <path
-                d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512H418.3c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304H178.3z"
-              />
-            </svg>
-          </div>
-          <div>
-            <a class="btn btn-success" href="/tenant/login">Login</a>
+
+        <div class="tenant-div">
+          <div class="owner-div-in">
+            <div class="rounded p-1 bg-light">
+              <h3 style="color: #113946">Tenant</h3>
+            </div>
+            <div class="m-2">
+              <svg
+                fill="#113946"
+                xmlns="http://www.w3.org/2000/svg"
+                height="3.5em"
+                viewBox="0 0 448 512"
+              >
+                <!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+                <path
+                  d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512H418.3c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304H178.3z"
+                />
+              </svg>
+            </div>
+            <div>
+              <a class="btn btn-login" href="/tenant/login">Login</a>
+            </div>
           </div>
         </div>
       </div>

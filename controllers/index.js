@@ -9,26 +9,28 @@ const getLanding = (req, res) => {
 const getDashboard = async (req, res) => {
   const user = req.user;
   try {
-    const tenants = await Tenant.find({house_owner: user._id})
+    const tenants = await Tenant.find({ house_owner: user._id });
+    const number_of_tenants = await Tenant.countDocuments();
     return res.render("admin_1", {
       user: user,
-      tenants: tenants
+      tenants: tenants,
+      number_of_tenants: number_of_tenants,
     });
   } catch (error) {
-    console.log(error)
+    console.log(error);
   }
 };
 
 const getAddTenant = (req, res) => {
-  const user = req.user
+  const user = req.user;
   return res.render("add_tenant", {
     message: "",
-    user: user
+    user: user,
   });
 };
 
 const postAddTenant = async (req, res) => {
-  const user = req.user
+  const user = req.user;
   const { full_name, phone_number, house_number, password, confirm_password } =
     req.body;
   if (
@@ -40,7 +42,7 @@ const postAddTenant = async (req, res) => {
   ) {
     return res.status(400).render("add_tenant", {
       message: "Please provide all the inputs",
-      user: user
+      user: user,
     });
   }
 
@@ -48,7 +50,7 @@ const postAddTenant = async (req, res) => {
   if (password !== confirm_password) {
     return res.status(400).render("add_tenant", {
       message: "Passwords do not match",
-      user: user
+      user: user,
     });
   }
   //Check if already registered
@@ -57,7 +59,7 @@ const postAddTenant = async (req, res) => {
   if (tenant) {
     return res.render("add_tenant", {
       message: "Tenant already registered.",
-      user: user
+      user: user,
     });
   }
   //save new tenant
@@ -73,61 +75,60 @@ const postAddTenant = async (req, res) => {
     await newTenant.save();
     return res.render("add_tenant", {
       message: "Tenant account created succefully",
-      user: user
+      user: user,
     });
   } catch (error) {
-    console.log(error)
+    console.log(error);
     return res.render("add_tenant", {
       message: "Error occured",
-      user: user
+      user: user,
     });
   }
 };
 
 const getTenantLogin = (req, res) => {
   return res.render("tenant_login", {
-    message: req.flash('error'),
+    message: req.flash("error"),
   });
 };
 
 const getTenantHome = async (req, res) => {
-  const user = req.user
-  const house_owner = await User.findOne({_id: user.house_owner})
+  const user = req.user;
+  const house_owner = await User.findOne({ _id: user.house_owner });
   return res.render("tenant_home", {
     user: user,
-    house_owner: house_owner
+    house_owner: house_owner,
   });
 };
 
-const getBuyUnit = (req, res)=>{
-  const user = req.user
+const getBuyUnit = (req, res) => {
+  const user = req.user;
   return res.render("buy_unit", {
     user: user,
-    message: ""
-  })
-}
+    message: "",
+  });
+};
 
-const postBuyUnit = (req, res)=>{
-
-  const { unit_amount } = req.body
-  const user = req.user
+const postBuyUnit = (req, res) => {
+  const { unit_amount } = req.body;
+  const user = req.user;
   /* sendSms(`Hello ${user.full_name} you bought ${unit_amount} `, "+255776607453") */
   return res.render("buy_unit", {
     user: user,
-    message: `You succefully bought units for ${unit_amount} shillings`
-  })
-}
+    message: `You succefully bought units for ${unit_amount} shillings`,
+  });
+};
 
-const logOutTenant = (req, res)=>{
-  req.logout((error)=>{
-    if(error){
+const logOutTenant = (req, res) => {
+  req.logout((error) => {
+    if (error) {
       console.log(error);
     }
     return res.render("tenant_login", {
-      message: "You are logged out."
-    })
+      message: "You are logged out.",
+    });
   });
-}
+};
 module.exports = {
   getLanding,
   getDashboard,
@@ -137,5 +138,5 @@ module.exports = {
   getTenantHome,
   logOutTenant,
   getBuyUnit,
-  postBuyUnit
+  postBuyUnit,
 };
