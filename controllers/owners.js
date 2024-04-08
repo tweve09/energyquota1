@@ -1,27 +1,30 @@
-const User = require("../models/userModel");
+const Owner = require("../models/ownerModel");
 
 const getRegisterUser = (req, res) => {
   return res.render("register", {
-    message: ""
+    message: "",
   });
 };
 
 const getLoginUser = (req, res) => {
   return res.render("login", {
-    message:  req.flash('error')
+    message: req.flash("error"),
   });
 };
 
 const postRegisterUser = async (req, res) => {
-  const { full_name, phone_number, meter_number, password, confirm_password } =
-    req.body;
-  /*     console.log(full_name)
-    console.log(phone_number)
-    console.log(meter_number)
-    console.log(password)
-    console.log(confirm_password) */
+  const {
+    full_name,
+    email,
+    phone_number,
+    meter_number,
+    password,
+    confirm_password,
+  } = req.body;
+
   if (
     !full_name ||
+    !email ||
     !phone_number ||
     !meter_number ||
     !password ||
@@ -41,46 +44,48 @@ const postRegisterUser = async (req, res) => {
 
   // check user exist
   try {
-    const user = await User.findOne({ phone_number: phone_number });
-    if (user) {
-      console.log(user)
+    const owner = await Owner.findOne({ email: email });
+    if (owner) {
       return res.render("register", {
-        message: "User already exist",
+        message: "User account already exist.Please login",
       });
     }
   } catch (error) {
-    console.log(error)
+    console.log(error);
   }
 
-  await User.create({
+  await Owner.create({
     full_name,
+    email,
     phone_number,
     meter_number,
-    password
-  }).then((user) => {
-    console.log(user)
-    return res.status(201).render("register", {
-        message: "User registered succefully. Login to continue"
+    password,
+  })
+    .then((owner) => {
+      console.log(owner);
+      return res.status(201).render("register", {
+        message: "User registered succefully. Login to continue",
+      });
     })
-  }).catch((err) => {
-    console.log(err)
-  });
+    .catch((err) => {
+      console.log(err);
+    });
 };
 
-const logOutUser = (req, res)=>{
-  req.logout((error)=>{
-    if(error){
+const logOutUser = (req, res) => {
+  req.logout((error) => {
+    if (error) {
       console.log(error);
     }
     return res.render("login", {
-      message: "You are logged out."
-    })
+      message: "You are logged out.",
+    });
   });
-}
+};
 
 module.exports = {
   getRegisterUser,
   getLoginUser,
   postRegisterUser,
-  logOutUser
+  logOutUser,
 };

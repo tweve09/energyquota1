@@ -1,13 +1,12 @@
-var express = require("express");
-var router = express.Router();
-const passport = require('passport');
+const express = require("express");
+const router = express.Router();
+const passport = require("passport");
 const {
   getRegisterUser,
   getLoginUser,
   postRegisterUser,
-  logOutUser
-} = require("../controllers/user");
-
+  logOutUser,
+} = require("../controllers/owners");
 
 router.get("/register", getRegisterUser);
 router.get("/login", getLoginUser);
@@ -16,10 +15,10 @@ router.post(
   "/login",
   passport.authenticate("owner", {
     successRedirect: "/dashboard",
-    failureRedirect: "/users/login",
+    failureRedirect: "/owners/login",
     failureFlash: true,
   })
 );
-router.get("/logout", logOutUser)
+router.get("/logout", logOutUser);
 
 module.exports = router;

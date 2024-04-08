@@ -39,7 +39,7 @@
                     <h3>EnergyQuota</h3>
                     <h4>Tenant login</h4>
                 </div>
-                <form action="/tenant/login" method="post">
+                <form action="/tenants_account/login" method="post">
                     <% if(message[0]){ %>
                         <div class="alert alert-info alert-dismissible fade show" role="alert">
                              <%= message %>
@@ -48,8 +48,8 @@
                       <% } %>
                 
                     <div class="mb-3">
-                        <label for="phone_number" class="form-label">Phone number</label>
-                        <input type="text" name="phone_number" class="form-control" id="phone_number" placeholder="+255XXXXXXXXX" title="please enter your phone number" required>
+                        <label for="email" class="form-label">Email</label>
+                        <input type="text" name="email" class="form-control" id="email" placeholder="Enter your email" title="please enter your phone number" required>
                       </div>
                       <div class="mb-3">
                         <label for="password" class="form-label">Password</label>
@@ -61,7 +61,7 @@
                       <button class="btn btn-login" type="submit">Login</button>
                 </form>
                 <div class="owner-link-div">
-                  <a href="/users/login" class="owner-link">House Owner.Login here.</a>
+                  <a href="/owners/login" class="owner-link">House Owner.Login here.</a>
                 </div>
             </div>  
         </div>

@@ -1,34 +1,34 @@
 const mongoose = require("mongoose");
 const bcrypt = require("bcryptjs");
 
-const tenantSchema = mongoose.Schema(
+const ownerSchema = mongoose.Schema(
   {
-    name: {
+    full_name: {
       type: String,
       required: true,
     },
     email: {
       type: String,
+      required: true,
       trim: true,
       unique: true,
     },
     phone_number: {
       type: Number,
       trim: true,
+      required: true,
     },
-    house_number: {
+    meter_number: {
       type: Number,
       required: true,
-      unique: true,
     },
     password: {
       type: String,
       required: true,
     },
-    house_owner: {
+    tenants: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "User",
-      required: true,
+      ref: "Tenant",
     },
   },
   {
@@ -37,7 +37,7 @@ const tenantSchema = mongoose.Schema(
 );
 
 // Hash the password before saving it
-tenantSchema.pre("save", async function (next) {
+ownerSchema.pre("save", async function (next) {
   if (this.isModified("password")) {
     this.password = await bcrypt.hash(this.password, 10);
   }
@@ -46,8 +46,8 @@ tenantSchema.pre("save", async function (next) {
 
 //model from userSchema
 
-const Tenant = mongoose.model("Tenant", tenantSchema);
+const Owner = mongoose.model("Owner", ownerSchema);
 
 // exporting
 
-module.exports = Tenant;
+module.exports = Owner;
