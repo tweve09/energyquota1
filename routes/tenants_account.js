@@ -11,11 +11,11 @@ router.get("/login", getTenantLogin);
 router.post(
   "/login",
   passport.authenticate("tenant", {
-    successRedirect: "/tenant",
+    successRedirect: "/tenant_dashboard",
     failureRedirect: "/tenants_account/login",
     failureFlash: true,
   })
 );
-router.post("/logout", logOutTenant);
+router.get("/logout", logOutTenant);
 
 module.exports = router;

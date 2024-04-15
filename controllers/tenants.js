@@ -1,3 +1,4 @@
+const { Redirect } = require("twilio/lib/twiml/VoiceResponse");
 const Tenant = require("../models/tenantModel");
 const { sendEmail } = require("../utils/sendEmail");
 
@@ -25,7 +26,7 @@ const getTenants = async (req, res) => {
 const getTenantsRegister = (req, res) => {
   const user = req.user;
   res.render("owner_tenants_register", {
-    user: user,
+    user,
     currentPage: "tenants",
     message: "",
   });
@@ -38,7 +39,7 @@ const postTenantRegister = async (req, res) => {
   //validate data
   if (!name || !email || !phone_number || !house_number) {
     return res.render("owner_tenants_register", {
-      user: user,
+      user,
       currentPage: "tenants",
       message: "",
     });
@@ -48,7 +49,7 @@ const postTenantRegister = async (req, res) => {
   const tenant = await Tenant.findOne({ email: email });
   if (tenant) {
     return res.render("owner_tenants_register", {
-      user: user,
+      user,
       currentPage: "tenants",
       message: "Tenant already registered",
     });
@@ -85,7 +86,7 @@ const postTenantRegister = async (req, res) => {
 
     await sendEmail(subject, template, context, send_to, sent_from);
     return res.render("owner_tenants_register", {
-      user: user,
+      user,
       currentPage: "tenants",
       message:
         "Tenant registered successfully, Login credentials sent to tenant email.",
@@ -95,8 +96,52 @@ const postTenantRegister = async (req, res) => {
   }
 };
 
+const getTenantEdit = async (req, res) => {
+  const user = req.user;
+  const id = req.params.id;
+  try {
+    const tenant = await Tenant.findOne({ _id: id });
+    return res.render("owner_tenants_edit", {
+      user,
+      currentPage: "tenants",
+      message: "",
+      tenant,
+    });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+const putTenantEdit = async (req, res) => {
+  const { name, phone_number, house_number } = req.body;
+  const id = req.params.id;
+  try {
+    await Tenant.findOneAndUpdate(
+      { _id: id },
+      { name: name, phone_number: phone_number, house_number: house_number },
+      { new: true }
+    );
+    res.redirect("/tenants");
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+const deleteTenant = async (req, res) => {
+  const { user_id } = req.body;
+  try {
+    await Tenant.findOneAndDelete({ _id: user_id });
+    res.json({ message: "ok" });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 module.exports = {
   getTenants,
   getTenantsRegister,
   postTenantRegister,
+  getTenantEdit,
+  putTenantEdit,
+  deleteTenant,
 };

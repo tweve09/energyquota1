@@ -62,7 +62,7 @@ module.exports = function () {
               tenant.password
             );
             if (tenant && isPasswordCorect) {
-              return done(null, user);
+              return done(null, tenant);
             }
             return done(null, false, {
               message: "Incorrect email or password",
