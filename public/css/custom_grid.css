@@ -1,0 +1,22 @@
+.container-div {
+  display: flex;
+  flex: wrap;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+}
+
+.grid-container-3 {
+  flex: 0 0 30%;
+}
+
+/* mobile */
+@media screen and (max-width: 768px) {
+  .container-div {
+    display: block;
+  }
+  .grid-container-3 {
+    width: 90%;
+    margin: 0 auto;
+  }
+}

@@ -21,7 +21,7 @@ services:
 
 
   acme-companion:
-    image: nginx-proxy/acme-companion
+    image: nginx-proxy/acme-companion:latest
     container_name: acme-companion
     volumes_from:
       - nginx-proxy
@@ -81,5 +81,3 @@ volumes:
     
 networks:
   nginx-proxy: {}
-  energy-network:
-    driver: bridge

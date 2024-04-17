@@ -14,6 +14,7 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
     />
     <link rel="stylesheet" href="/css/admin.css" />
+    <link rel="stylesheet" href="/css/custom_grid.css" />
   </head>
   <body>
     <div class="d-flex" id="wrapper">
@@ -23,7 +24,61 @@
         <%- include("partials/header_tenant") %>
         <!-- page contents -->
         <div>
-          <h4 class="text-center">Tenant dashboard</h4>
+          <!-- welcome section -->
+          <div class="d-flex m-3 align-items-center">
+            <div>
+              <span style="font-size: 20px">&#128075;</span>
+            </div>
+            <div style="margin-left: 10px" class="pt-2">
+              <p>
+                Welcome
+                <span class="fst-italic fw-bold"> <%= user.name %> </span>
+              </p>
+            </div>
+          </div>
+          <hr
+            style="
+              border: none;
+              background-color: black;
+              width: 95%;
+              margin: 1rem auto;
+              height: 4px;
+            "
+          />
+          <!-- end of welcome section -->
+
+          <!-- first section -->
+          <div class="container-div">
+            <div
+              class="grid-container-3 rounded shadow-lg p-2 mb-3"
+              style="background-color: #175148"
+            >
+              <h5 class="text-center text-white">Meter details</h5>
+              <div class="text-white">
+                <p>Meter number: <span>212</span></p>
+                <p>House number: <span>2</span></p>
+              </div>
+            </div>
+            <div
+              class="grid-container-3 rounded shadow p-2 mb-3"
+              style="background-color: #a1d397b7"
+            >
+              <h5 class="text-center">Remaining Units</h5>
+              <div class="text-center">
+                <h1>35 <span style="font-size: 0.8rem">Kwh</span></h1>
+              </div>
+            </div>
+            <div
+              class="grid-container-3 rounded shadow-lg p-2 mb-3"
+              style="background-color: #175148"
+            >
+              <h5 class="text-center text-white">Used Units</h5>
+              <div class="text-center text-white">
+                <h1>15 <span style="font-size: 0.8rem">Kwh</span></h1>
+              </div>
+            </div>
+          </div>
+          <!-- end of first section -->
         </div>
       </div>
     </div>
