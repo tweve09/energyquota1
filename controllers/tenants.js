@@ -69,7 +69,7 @@ const postTenantRegister = async (req, res) => {
     });
 
     await new_tenant.save();
-    const loginUrl = `${process.env.FRONTEND_URL}/tenant-accounts/login`;
+    const loginUrl = `${process.env.FRONTEND_URL}/tenants_account/login`;
 
     const subject = "EnergyQuota - Tenant account credentials.";
     const context = {
