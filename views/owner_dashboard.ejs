@@ -14,6 +14,7 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
     />
     <link rel="stylesheet" href="/css/admin.css" />
+    <link rel="stylesheet" href="/css/custom_grid.css" />
   </head>
   <body>
     <div class="d-flex" id="wrapper">
@@ -23,13 +24,36 @@
         <%- include("partials/header_owner") %>
         <!-- page contents -->
         <div>
-          
-          <div class="container m-3">
+          <div class="container">
+            <!-- welcome section -->
+            <div class="d-flex m-3 align-items-center">
+              <div>
+                <span style="font-size: 20px">&#128075;</span>
+              </div>
+              <div style="margin-left: 10px" class="pt-2">
+                <p>
+                  Welcome
+                  <span class="fst-italic fw-bold">
+                    <%= user.full_name %>
+                  </span>
+                </p>
+              </div>
+            </div>
+            <hr
+              style="
+                border: none;
+                background-color: black;
+                width: 95%;
+                margin: 1rem auto;
+                height: 4px;
+              "
+            />
+            <!-- end of welcome section -->
             <!-- dashboard sections -->
-            <div class="row gap-5">
+            <div class="container-div">
               <div
                 style="background-color: #a1d397b7"
-                class="col-lg-3 col-sm-12 shadow rounded"
+                class="grid-container-3 shadow rounded"
               >
                 <h4 class="text-center mb-3">Tenants</h4>
                 <div class="text-center p-2">
@@ -49,7 +73,7 @@
               </div>
               <div
                 style="background-color: #175148"
-                class="col-lg-3 col-sm-12 rounded shadow-lg"
+                class="grid-container-3 rounded shadow-lg"
               >
                 <h4 class="text-center mb-3 text-white">Remaining units</h4>
                 <div class="text-center p-2">
@@ -69,7 +93,7 @@
               </div>
               <div
                 style="background-color: #a1d397b7"
-                class="col-lg-3 col-sm-12 shadow p-2 rounded"
+                class="grid-container-3 shadow p-2 rounded"
               >
                 <h4 class="text-center mb-3">Used units</h4>
                 <div class="text-center">
@@ -88,7 +112,6 @@
                 <h4 class="text-center p-2">10.00 Units</h4>
               </div>
             </div>
-
             <!-- end of dashboard sections -->
           </div>
         </div>
