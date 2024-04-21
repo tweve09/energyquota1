@@ -40,6 +40,11 @@
             >Add new</a
           >
           <div class="table-responsive">
+            <% if (tenants.length === 0) { %>
+            <div class="text-center p-3">
+              <p>No tenants registered</p>
+            </div>
+            <% } else { %>
             <table
               class="table table-bordered table-striped table-success hover"
             >
@@ -102,6 +107,12 @@
                 <% }) %>
               </tbody>
             </table>
+            <div class="text-end">
+              <a class="btn btn-primary" href="/tenants/download_tenants"
+                >Download(pdf)</a
+              >
+            </div>
+            <%}%>
           </div>
         </div>
       </div>

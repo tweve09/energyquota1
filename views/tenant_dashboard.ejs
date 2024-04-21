@@ -55,8 +55,9 @@
             >
               <h5 class="text-center text-white">Meter details</h5>
               <div class="text-white">
-                <p>Meter number: <span>212</span></p>
-                <p>House number: <span>2</span></p>
+                <p>Owner: <span><%= owner.full_name %></span></p>
+                <p>Meter number: <span><%= owner.meter_number %></span></p>
+                <p>House number: <span><%= user.house_number %></span></p>
               </div>
             </div>
             <div
@@ -65,7 +66,7 @@
             >
               <h5 class="text-center">Remaining Units</h5>
               <div class="text-center">
-                <h1>35 <span style="font-size: 0.8rem">Kwh</span></h1>
+                <h1>00.00 <span style="font-size: 0.8rem">Kwh</span></h1>
               </div>
             </div>
             <div
@@ -74,7 +75,7 @@
             >
               <h5 class="text-center text-white">Used Units</h5>
               <div class="text-center text-white">
-                <h1>15 <span style="font-size: 0.8rem">Kwh</span></h1>
+                <h1>OO.00 <span style="font-size: 0.8rem">Kwh</span></h1>
               </div>
             </div>
           </div>

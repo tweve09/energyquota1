@@ -23,8 +23,8 @@ services:
       - MONGO_DB_URI=mongodb://EmmanuelTweve09:Elementrix2030@mongo-db:27017/energyQuotaDB?authSource=admin
       - SESSION_SECRETE="Elementrix2030"
       - EMAIL_HOST=smtp.gmail.com
-      - EMAIL_USER=elementrixtweve09@gmail.com
-      - EMAIL_PASSWORD=rdzc hlqk vwyp yxgb
+      - EMAIL_USER=info.energyquota@gmail.com
+      - EMAIL_PASSWORD=leko nrsp sttb zoxm
       - FRONTEND_URL=http://localhost:5000
     restart: unless-stopped
     networks:
