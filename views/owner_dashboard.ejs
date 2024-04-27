@@ -15,6 +15,7 @@
     />
     <link rel="stylesheet" href="/css/admin.css" />
     <link rel="stylesheet" href="/css/custom_grid.css" />
+    <script src="https://unpkg.com/mqtt/dist/mqtt.min.js"></script>
   </head>
   <body>
     <div class="d-flex" id="wrapper">
@@ -41,19 +42,20 @@
             </div>
             <hr
               style="
-                border: none;
-                background-color: black;
-                width: 95%;
-                margin: 1rem auto;
                 height: 4px;
+                background-color: #175148;
+                border: none;
+                width: 95%;
+                margin: 0.5rem auto;
               "
             />
             <!-- end of welcome section -->
             <!-- dashboard sections -->
             <div class="container-div">
               <div
-                style="background-color: #a1d397b7"
-                class="grid-container-3 shadow rounded"
+                style="background-color: #a1d397b7; cursor: pointer"
+                class="grid-container-3 shadow rounded mb-3"
+                onclick="viewTenants()"
               >
                 <h4 class="text-center mb-3">Tenants</h4>
                 <div class="text-center p-2">
@@ -73,7 +75,7 @@
               </div>
               <div
                 style="background-color: #175148"
-                class="grid-container-3 rounded shadow-lg"
+                class="grid-container-3 rounded shadow-lg mb-3"
               >
                 <h4 class="text-center mb-3 text-white">Remaining units</h4>
                 <div class="text-center p-2">
@@ -89,7 +91,9 @@
                     />
                   </svg>
                 </div>
-                <h4 class="text-center p-2 text-white">00.00 Units</h4>
+                <h4 class="text-center p-2 text-white">
+                  <span id="remaining-units"></span> Units
+                </h4>
               </div>
               <div
                 style="background-color: #a1d397b7"
@@ -118,6 +122,7 @@
       </div>
     </div>
     <script src="/js/index.js"></script>
+    <script src="/js/handle_socket_owner.js"></script>
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"

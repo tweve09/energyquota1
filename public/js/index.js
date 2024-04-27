@@ -1,5 +1,9 @@
 const myFunction = () => {
-  alert("Dropdwon coming");
+  window.location.href = "/dashboard";
+};
+
+const viewTenants = () => {
+  window.location.href = "/tenants";
 };
 
 var el = document.getElementById("wrapper");
