@@ -7,6 +7,7 @@ const ownerProfileRouter = require("../routes/owner_profile");
 const tenantAccountRouter = require("../routes/tenants_account");
 const tenantDashboardRouter = require("../routes/tenant_dashboard");
 const tenantProfileRouter = require("../routes/tenant_profile");
+const tenantRechargeRouter = require("../routes/tenant_recharge");
 
 module.exports = function (app) {
   app.use("/", indexRouter);
@@ -18,4 +19,5 @@ module.exports = function (app) {
   app.use("/tenants_account", tenantAccountRouter);
   app.use("/tenant_dashboard", tenantDashboardRouter);
   app.use("/tenant_profile", tenantProfileRouter);
+  app.use("/tenant_recharge", tenantRechargeRouter);
 };

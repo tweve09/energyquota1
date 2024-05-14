@@ -14,6 +14,7 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
     />
     <link rel="stylesheet" href="/css/admin.css" />
+    <link rel="stylesheet" href="/css/custom_grid.css" />
   </head>
   <body>
     <div class="d-flex" id="wrapper">
@@ -23,7 +24,49 @@
         <%- include("partials/header_tenant") %>
         <!-- page contents -->
         <div>
-          <h2>Tenant dashboard</h2>
+          <div class="text-center p-2">
+            <h4>Buy Units</h4>
+          </div>
+          <hr
+          style="
+            border: none;
+            background-color: black;
+            width: 95%;
+            margin: 1rem auto;
+            height: 4px;
+          "
+          />
+
+          <div>
+            <h5 class="p-2 text-center">Quick Selections</h5>
+            <div class="container-div">
+              <div class="grid-container-3 text-center">
+                <p><span style="font-size: 4rem;"> 10 </span>kwh</p>
+                <button class="btn btn-success btn-lg">Buy</button>
+              </div>
+              <div class="grid-container-3 text-center">
+                <p><span style="font-size: 4rem;"> 15 </span>kwh</p>
+                <button class="btn btn-success btn-lg">Buy</button>
+              </div>
+              <div class="grid-container-3 text-center">
+                <p><span style="font-size: 4rem;"> 20 </span>kwh</p>
+                <button class="btn btn-success btn-lg">Buy</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="row justify-content-center mt-4">
+            <div class="col-lg-6">
+              <form action="" method="post">
+                <div class="mb-3">
+                  <label for="units" class="form-label">Units</label>
+                  <input type="text" class="form-control" name="units" id="units" placeholder="Amount of units">
+                </div>
+                <button type="submit" class="btn btn-success btn-lg">Buy</button>
+              </form>
+            </div>
+          </div>
+
         </div>
       </div>
     </div>
