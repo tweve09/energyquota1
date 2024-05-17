@@ -37,30 +37,46 @@
           "
           />
 
+          <% if(message[0]){ %>
+            <div class="alert alert-success alert-dismissible fade show m-3" role="alert">
+                 <%= message %>
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+          <% } %>
+
           <div>
             <h5 class="p-2 text-center">Quick Selections</h5>
             <div class="container-div">
               <div class="grid-container-3 text-center">
                 <p><span style="font-size: 4rem;"> 10 </span>kwh</p>
-                <button class="btn btn-success btn-lg">Buy</button>
+                <form action="/tenant_recharge/units" method="post">
+                  <input type="hidden" name="units_value" value="10.00">
+                  <button type="submit" class="btn btn-success btn-lg">Buy</button>
+                </form>
               </div>
               <div class="grid-container-3 text-center">
                 <p><span style="font-size: 4rem;"> 15 </span>kwh</p>
-                <button class="btn btn-success btn-lg">Buy</button>
+                <form action="/tenant_recharge/units" method="post">
+                  <input type="hidden" name="units_value" value="15.00">
+                  <button type="submit" class="btn btn-success btn-lg">Buy</button>
+                </form>
               </div>
               <div class="grid-container-3 text-center">
                 <p><span style="font-size: 4rem;"> 20 </span>kwh</p>
-                <button class="btn btn-success btn-lg">Buy</button>
+                <form action="/tenant_recharge/units" method="post">
+                  <input type="hidden" name="units_value" value="20.00">
+                  <button type="submit" class="btn btn-success btn-lg">Buy</button>
+                </form>
               </div>
             </div>
           </div>
 
           <div class="row justify-content-center mt-4">
             <div class="col-lg-6">
-              <form action="" method="post">
+              <form action="/tenant_recharge/units" method="post">
                 <div class="mb-3">
                   <label for="units" class="form-label">Units</label>
-                  <input type="text" class="form-control" name="units" id="units" placeholder="Amount of units">
+                  <input type="text" class="form-control" name="units_value" id="units" placeholder="Amount of units" pattern="^[0-9]*$" title="Units are numbers" required>
                 </div>
                 <button type="submit" class="btn btn-success btn-lg">Buy</button>
               </form>

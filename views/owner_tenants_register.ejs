@@ -53,6 +53,7 @@
                   ></button>
                 </div>
                 <% } %>
+                <input type="hidden" name="meter_number" value="<%= user.meter_number %>" id="meter-number">
                 <div class="mb-3">
                   <label for="name" class="form-label">Name</label>
                   <input
@@ -76,17 +77,10 @@
                   />
                 </div>
                 <div class="mb-3">
-                  <label for="phone_number" class="form-label"
-                    >Phone number</label
-                  >
-                  <input
-                    type="text"
-                    name="phone_number"
-                    id="phone_number"
-                    placeholder="Tenant phone number"
-                    class="form-control"
-                    required
-                  />
+                  <label for="phone_number" class="form-label">Phone number</label>
+                  <input type="text" name="phone_number" class="form-control" id="phone_number" pattern="\+255\d{9}"
+                  title="Enter a valid phone number starting with +255 and followed by 9 digits"
+                  placeholder="+255XXXXXXXXX" required>
                 </div>
                 <div class="mb-3">
                   <label for="house_number" class="form-label"
@@ -96,7 +90,9 @@
                     type="text"
                     name="house_number"
                     id="house_number"
-                    placeholder="Tenant house number"
+                    placeholder="Tenant house number: 02"
+                    pattern="^\d{2}$"
+                    title="House number should be in this format: 02"
                     class="form-control"
                     required
                   />

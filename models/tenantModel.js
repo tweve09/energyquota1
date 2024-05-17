@@ -30,6 +30,11 @@ const tenantSchema = mongoose.Schema(
       ref: "User",
       required: true,
     },
+    tenant_id: {
+      type: String,
+      required: true,
+      unique: true,
+    }
   },
   {
     timestamps: true,

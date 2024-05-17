@@ -33,7 +33,8 @@ const getTenantsRegister = (req, res) => {
 };
 
 const postTenantRegister = async (req, res) => {
-  const { name, email, phone_number, house_number } = req.body;
+  const { name, email, phone_number, house_number, meter_number } = req.body;
+
   const user = req.user;
 
   //validate data
@@ -69,6 +70,7 @@ const postTenantRegister = async (req, res) => {
       house_number,
       password,
       house_owner: user.id,
+      tenant_id: meter_number + house_number
     });
 
     await new_tenant.save();

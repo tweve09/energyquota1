@@ -62,7 +62,8 @@
               </div>
               <div class="mb-3">
                 <label for="meter_number" class="form-label">Meter number</label>
-                <input type="text" name="meter_number" class="form-control" id="meter_number"
+                <input type="text" name="meter_number" class="form-control" pattern="^\d{11}$"
+                title="Meter number has 11 digits"  id="meter_number"
                   placeholder="Enter your meter number" required>
               </div>
               <div class="mb-3">

@@ -1,6 +1,8 @@
 var createError = require("http-errors");
 var express = require("express");
 var path = require("path");
+const { initializeSocket } = require("./socketHandler");
+const http = require("http");
 var logger = require("morgan");
 const cors = require("cors");
 const passport = require("passport");
@@ -8,6 +10,7 @@ require("dotenv").config();
 var flash = require("connect-flash");
 
 var app = express();
+const server = http.createServer(app);
 
 app.use(cors());
 app.set("views", path.join(__dirname, "views"));
@@ -29,6 +32,8 @@ app.use(passport.initialize());
 app.use(passport.session());
 require("./config/passportConfig")();
 
+initializeSocket(server);
+
 //routes
 require("./config/routesConfig")(app);
 
@@ -46,4 +51,8 @@ app.use(function (err, req, res, next) {
   res.render("error");
 });
 
-module.exports = app;
+require("./config/db")();
+
+server.listen(5000, ()=>{
+  console.log("server is running on port: 5000");
+})

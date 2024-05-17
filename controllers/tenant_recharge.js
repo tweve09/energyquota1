@@ -1,3 +1,5 @@
+const Recharge = require("../models/rechargeModel");
+
 const getRechargePage = (req, res) => {
     const user = req.user;
 
@@ -8,6 +10,37 @@ const getRechargePage = (req, res) => {
     });
 }
 
+const postBuyUnits = async (req, res) => {
+    const user = req.user;
+    const { units_value } = req.body;
+
+    // find record
+    const recharge_present = await Recharge.findOne({ tenant: user.id});
+    if (recharge_present) {
+      
+      return res.render("tenant_recharge", {
+        user,
+        currentPage: "tenant_recharge",
+        message: "units bought",
+      });
+    }
+
+    const recharge = new Recharge({
+        units: units_value,
+        remaining_units: units_value,
+        tenant: user._id
+    });
+    
+    recharge.save();
+
+    return res.render("tenant_recharge", {
+      user,
+      currentPage: "tenant_recharge",
+      message: "Units bought successfully",
+    });
+}
+
 module.exports = {
-    getRechargePage
+    getRechargePage,
+    postBuyUnits
 }
