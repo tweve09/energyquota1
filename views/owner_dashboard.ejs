@@ -92,7 +92,7 @@
                   </svg>
                 </div>
                 <h4 class="text-center p-2 text-white">
-                  <span id="remaining-units"></span> Units
+                  <span id="all-remaining"> <%= all_remaining %></span> Units
                 </h4>
               </div>
               <div
@@ -113,16 +113,18 @@
                     />
                   </svg>
                 </div>
-                <h4 class="text-center p-2">00.00 Units</h4>
+                <h4 class="text-center p-2"> <span id="all-used"> <%= all_used %></span> Units</h4>
               </div>
             </div>
             <!-- end of dashboard sections -->
+            <p style="display: none;" id="meter-number"><%= user.meter_number %></p>
           </div>
         </div>
       </div>
     </div>
+    <script src="/socket.io/socket.io.js"></script>
     <script src="/js/index.js"></script>
-    <script src="/js/handle_socket_owner.js"></script>
+    <script src="/js/all_tenants.js"></script>
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"

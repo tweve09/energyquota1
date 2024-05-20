@@ -11,6 +11,13 @@ function initializeSocket(server) {
         socket.join(tenant_id);
         console.log(`Joined room ${tenant_id}`);
     });
+
+    socket.on("joinRoomOwner", (meter_number)=>{
+      socket.join(meter_number);
+      console.log(`Joined room ${meter_number}`);
+  });
+
+    
     
   });
 }

@@ -56,11 +56,31 @@ const handleDeviceData = async (req, res) => {
             io.to(tenant_db.tenant_id).emit("data", meter_data);
         }
 
+        const all_units = await Recharge.find({ meter_number: meter_number })
+        
+        let all_used  = 0;
+        let all_remaining = 0;
+
+        all_units.forEach((unit) => {
+            all_used += Number(unit.used_units);
+            all_remaining += Number(unit.remaining_units);
+        })
+
+        all_tenants = {
+            used: all_used.toFixed(2),
+            remaining: all_remaining.toFixed(2),
+        }
+
+        // house owner socket
+        io.to(meter_number).emit("all_data", all_tenants);
+
         // Send the response back with the updated tenant information
         return res.json({
             meter_number,
             tenants: new_tenants
         });
+
+
     } catch (error) {
         // Handle any unexpected errors
         console.error(error);
