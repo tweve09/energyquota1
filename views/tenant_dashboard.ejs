@@ -58,6 +58,7 @@
                 <p>Meter owner: <span><%= owner.full_name %></span></p>
                 <p>Meter number: <span><%= owner.meter_number %></span></p>
                 <p>House number: <span><%= user.house_number %></span></p>
+                <p id="tenant-id" style="display: none;"><%= user.tenant_id %></p>
               </div>
             </div>
             <div
@@ -66,7 +67,7 @@
             >
               <h5 class="text-center">Remaining Units</h5>
               <div class="text-center">
-                <h1> <%= remaining_units %>  <span style="font-size: 0.8rem">Kwh</span></h1>
+                <h1> <span id="remaining-units"> <%= remaining_units %> </span> <span style="font-size: 0.8rem">Kwh</span></h1>
               </div>
             </div>
             <div
@@ -75,7 +76,7 @@
             >
               <h5 class="text-center text-white">Used Units</h5>
               <div class="text-center text-white">
-                <h1> 00.00 <span style="font-size: 0.8rem">Kwh</span></h1>
+                <h1> <span id="used-units"> <%= used_units %>  </span> <span style="font-size: 0.8rem">Kwh</span></h1>
               </div>
             </div>
           </div>
@@ -83,6 +84,8 @@
         </div>
       </div>
     </div>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/js/handle_socket.js"></script>
     <script src="/js/index.js"></script>
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"

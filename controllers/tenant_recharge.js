@@ -28,7 +28,9 @@ const postBuyUnits = async (req, res) => {
     const recharge = new Recharge({
         units: units_value,
         remaining_units: units_value,
-        tenant: user._id
+        tenant: user._id,
+        meter_number: user.meter_number,
+        used_units: "0",
     });
     
     recharge.save();

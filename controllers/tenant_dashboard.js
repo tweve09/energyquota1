@@ -6,7 +6,7 @@ const getTenantDashboard = async (req, res) => {
   const owner = await Owner.findOne({ _id: user.house_owner });
   const recharge = await Recharge.findOne({ tenant: user._id });
   const remaining_units = recharge !== null ? recharge.remaining_units: "0.00";
-  
+  const used_units = recharge !== null ? recharge.used_units: "0.00";
 
   // remaining units
 
@@ -15,6 +15,7 @@ const getTenantDashboard = async (req, res) => {
     currentPage: "tenant_dashboard",
     owner,
     remaining_units,
+    used_units,
   });
 };
 

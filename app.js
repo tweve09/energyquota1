@@ -1,7 +1,7 @@
 var createError = require("http-errors");
 var express = require("express");
 var path = require("path");
-const { initializeSocket } = require("./socketHandler");
+const { initializeSocket, getSocketIO } = require("./socketHandler");
 const http = require("http");
 var logger = require("morgan");
 const cors = require("cors");
@@ -52,6 +52,14 @@ app.use(function (err, req, res, next) {
 });
 
 require("./config/db")();
+
+const io = getSocketIO();
+io.on('connection', (socket) => {
+  console.log('a user connected');
+  socket.on('disconnect', () => {
+    console.log('user disconnected');
+  });
+});
 
 server.listen(5000, ()=>{
   console.log("server is running on port: 5000");

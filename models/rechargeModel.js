@@ -2,9 +2,13 @@ const mongoose = require("mongoose");
 
 const rechargeSchema = mongoose.Schema(
     {
-      units: [],
       remaining_units: {
-        type: mongoose.Types.Decimal128,
+        type: String,
+        required: true,
+        trim: true,
+      },
+      used_units: {
+        type: String,
         required: true,
         trim: true,
       },
@@ -13,6 +17,12 @@ const rechargeSchema = mongoose.Schema(
         ref: "Tenant",
         required: true,
       },
+      meter_number: {
+        type: String,
+        required: true,
+        trim: true,
+      },
+      units: [],
     },{
         timestamps: true,
     }

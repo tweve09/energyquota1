@@ -70,7 +70,8 @@ const postTenantRegister = async (req, res) => {
       house_number,
       password,
       house_owner: user.id,
-      tenant_id: meter_number + house_number
+      tenant_id: meter_number + house_number,
+      meter_number,
     });
 
     await new_tenant.save();

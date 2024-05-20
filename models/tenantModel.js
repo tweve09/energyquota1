@@ -34,6 +34,10 @@ const tenantSchema = mongoose.Schema(
       type: String,
       required: true,
       unique: true,
+    },
+    meter_number: {
+      type: String,
+      required: true,
     }
   },
   {
