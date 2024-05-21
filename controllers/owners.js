@@ -43,16 +43,13 @@ const postRegisterUser = async (req, res) => {
   }
 
   // check user exist
-  try {
     const owner = await Owner.find({ $or: [ { email: email}, {meter_number: meter_number}] });
-    if (owner) {
+    
+    if (owner.length !== 0) {
       return res.render("register", {
         message: "Email or meter number already taken",
       });
     }
-  } catch (error) {
-    console.log(error);
-  }
 
   await Owner.create({
     full_name,
@@ -62,7 +59,6 @@ const postRegisterUser = async (req, res) => {
     password,
   })
     .then((owner) => {
-      console.log(owner);
       return res.status(201).render("register", {
         message: "User registered succefully. Login to continue",
       });
