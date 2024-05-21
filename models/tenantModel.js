@@ -19,7 +19,6 @@ const tenantSchema = mongoose.Schema(
     house_number: {
       type: Number,
       required: true,
-      unique: true,
     },
     password: {
       type: String,

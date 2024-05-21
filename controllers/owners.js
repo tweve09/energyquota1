@@ -44,10 +44,10 @@ const postRegisterUser = async (req, res) => {
 
   // check user exist
   try {
-    const owner = await Owner.findOne({ email: email });
+    const owner = await Owner.find({ $or: [ { email: email}, {meter_number: meter_number}] });
     if (owner) {
       return res.render("register", {
-        message: "User account already exist.Please login",
+        message: "Email or meter number already taken",
       });
     }
   } catch (error) {

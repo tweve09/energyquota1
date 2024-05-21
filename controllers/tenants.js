@@ -47,15 +47,25 @@ const postTenantRegister = async (req, res) => {
   }
 
   // check if user is already registered
-  const tenant = await Tenant.findOne({
-    $or: [{ email: email }, { house_number: house_number }],
-  });
+  const tenant = await Tenant.findOne({ email: email });
 
   if (tenant) {
     return res.render("owner_tenants_register", {
       user,
       currentPage: "tenants",
-      message: "Tenant already registered or house number already taken.",
+      message: "Tenant already registered",
+    });
+  }
+
+  // check if there is meter number with same house number
+  const isHouseTaken = await Tenant.findOne({ meter_number: meter_number , house_number: house_number });
+
+  
+  if (isHouseTaken) {
+    return res.render("owner_tenants_register", {
+      user,
+      currentPage: "tenants",
+      message: "The house number is already assigned to a tenant with the same meter number.",
     });
   }
 

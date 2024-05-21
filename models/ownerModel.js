@@ -21,6 +21,7 @@ const ownerSchema = mongoose.Schema(
     meter_number: {
       type: Number,
       required: true,
+      unique: true,
     },
     password: {
       type: String,
