@@ -28,15 +28,16 @@ const handleDeviceData = async (req, res) => {
             }
 
             // Calculate the new remaining units
-            const new_remaining = remaining.remaining_units - tenant.units_used;
+            const new_remaining = Number(remaining.remaining_units) - Number(tenant.units_used);
+            const new_used = Number(remaining.used_units) + Number(tenant.units_used);
 
             // Update the remaining units in the database
             const updatedRecharge = await Recharge.findOneAndUpdate(
                 { tenant: tenant_db._id },
                 { 
                     $set: { 
-                      remaining_units: new_remaining, 
-                      used_units: tenant.units_used 
+                      remaining_units: new_remaining.toFixed(2), 
+                      used_units: new_used.toFixed(2)
                     } 
                 },
                 { new: true }
@@ -50,8 +51,8 @@ const handleDeviceData = async (req, res) => {
 
             //emit to socket room
             meter_data = {
-                remaining: new_remaining,
-                used: tenant.units_used
+                remaining: new_remaining.toFixed(2),
+                used: new_used.toFixed(2)
             }
             io.to(tenant_db.tenant_id).emit("data", meter_data);
         }

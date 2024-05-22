@@ -17,11 +17,17 @@ const postBuyUnits = async (req, res) => {
     // find record
     const recharge_present = await Recharge.findOne({ tenant: user.id});
     if (recharge_present) {
+
+      // update the remaining
+      recharge_present.remaining_units = Number(recharge_present.remaining_units) + Number(units_value);
+      recharge_present.units.push(units_value);
+      recharge_present.save();
+      
       
       return res.render("tenant_recharge", {
         user,
         currentPage: "tenant_recharge",
-        message: "units bought",
+        message: "units bought successfully",
       });
     }
 
