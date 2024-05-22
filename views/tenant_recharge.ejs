@@ -25,7 +25,7 @@
         <!-- page contents -->
         <div>
           <div class="text-center p-2">
-            <h4>Buy Units</h4>
+            <h3>Buy Units</h4>
           </div>
           <hr
           style="
@@ -45,23 +45,23 @@
           <% } %>
 
           <div>
-            <h5 class="p-2 text-center">Quick Selections</h5>
+            <h4 class="p-2 text-center">Quick Selections</h4>
             <div class="container-div">
-              <div class="grid-container-3 text-center rounded p-2 mb-2" style="background-color: #a1d397b7;">
+              <div class="grid-container-3 text-center shadow rounded p-2 mb-2" style="background-color: #a1d397b7;">
                 <p><span style="font-size: 4rem;"> 10 </span>kwh</p>
                 <form action="/tenant_recharge/units" method="post">
                   <input type="hidden" name="units_value" value="10.00">
                   <button type="submit" class="btn btn-success btn-lg">Buy</button>
                 </form>
               </div>
-              <div class="grid-container-3 text-center rounded p-2 mb-2" style="background-color: #175148;">
+              <div class="grid-container-3 text-center shadow-lg rounded p-2 mb-2" style="background-color: #175148;">
                 <p style="color: white;"><span style="font-size: 4rem;"> 15 </span>kwh</p>
                 <form action="/tenant_recharge/units" method="post">
                   <input type="hidden" name="units_value" value="15.00">
                   <button type="submit" class="btn btn-success btn-lg">Buy</button>
                 </form>
               </div>
-              <div class="grid-container-3 text-center rounded p-2 mb-2" style="background-color: #a1d397b7;">
+              <div class="grid-container-3 text-center shadow rounded p-2 mb-2" style="background-color: #a1d397b7;">
                 <p><span style="font-size: 4rem;"> 20 </span>kwh</p>
                 <form action="/tenant_recharge/units" method="post">
                   <input type="hidden" name="units_value" value="20.00">
@@ -72,11 +72,14 @@
           </div>
 
           <div class="row justify-content-center mt-4">
+            <div class="mb-3">
+              <h4 class="text-center">Custom Units</h4>
+            </div>
             <div class="col-lg-6">
               <form action="/tenant_recharge/units" method="post">
                 <div class="mb-3">
                   <label for="units" class="form-label">Units</label>
-                  <input type="text" class="form-control" name="units_value" id="units" placeholder="Amount of units" pattern="^[0-9]*$" title="Units are numbers" required>
+                  <input type="text" class="form-control" name="units_value" id="units" placeholder="Please enter amount of units" pattern="^[0-9]*$" title="Units are numbers" required>
                 </div>
                 <button type="submit" class="btn btn-success btn-lg">Buy</button>
               </form>
