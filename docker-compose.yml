@@ -1,12 +1,12 @@
-version: '3.8'
+version: "3.8"
 services:
   nginx-proxy:
-    image: nginxproxy/nginx-proxy:alpine 
+    image: nginxproxy/nginx-proxy:alpine
     container_name: nginx-proxy
     restart: always
     ports:
-      - 80:80 
-      - 443:443 
+      - 80:80
+      - 443:443
     volumes:
       - conf:/etc/nginx/conf.d
       - vhost:/etc/nginx/vhost.d
@@ -15,13 +15,12 @@ services:
       - certs:/etc/nginx/certs:ro
       - /var/run/docker.sock:/tmp/docker.sock:ro
     environment:
-    - ENABLE_IPV6=true
+      - ENABLE_IPV6=true
     networks:
       - nginx-proxy
 
-
   acme-companion:
-    image: nginx-proxy/acme-companion:latest
+    image: nginxproxy/acme-companion:latest
     container_name: acme-companion
     volumes_from:
       - nginx-proxy
@@ -68,7 +67,6 @@ services:
     networks:
       - nginx-proxy
 
-         
 volumes:
   conf: {}
   vhost: {}
@@ -78,6 +76,6 @@ volumes:
   acme: {}
   energyquota:
     driver: local
-    
+
 networks:
   nginx-proxy: {}
