@@ -60,7 +60,7 @@ services:
       - EMAIL_HOST=smtp.gmail.com
       - EMAIL_USER=elementrixtweve09@gmail.com
       - EMAIL_PASSWORD=rdzc hlqk vwyp yxgb
-      - FRONTEND_URL=http://localhost:5000
+      - FRONTEND_URL=https://www.phociexperttechnologies.co.tz
       - VIRTUAL_HOST=www.phociexperttechnologies.co.tz, phociexperttechnologies.co.tz
       - LETSENCRYPT_HOST=www.phociexperttechnologies.co.tz,phociexperttechnologies.co.tz
     restart: unless-stopped
