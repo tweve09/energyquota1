@@ -1,17 +1,41 @@
-const accountSid = "ACe158e0eec7e6bb4e61a7186885a1718d";
-const authToken = "501d108c8b8973732254535611cf7f31";
-const client = require("twilio")(accountSid, authToken);
+const axios = require("axios");
+const https = require("https");
+var btoa = require("btoa");
 
-const sendSms = (message, to_number) => {
-  client.messages
-    .create({
-      body: message,
-      to: to_number,
-      from: "+19386665909"
-    })
-    .then((message) => console.log(message.sid))
-    .catch((err) => console.log(err));
-};
+const api_key = process.env.BEEM_API_KEY;
+const secret_key = process.env.BEEM_SECRETE_KEY;
+const content_type = "application/json";
+const source_addr = process.env.BEEM_SOURCE_ADRESS;
+
+function sendSms(message, tenantPhoneNumber) {
+  axios
+    .post(
+      "https://apisms.beem.africa/v1/send",
+      {
+        source_addr: source_addr,
+        schedule_time: "",
+        encoding: 0,
+        message: message,
+        recipients: [
+          {
+            recipient_id: 1,
+            dest_addr: tenantPhoneNumber,
+          },
+        ],
+      },
+      {
+        headers: {
+          "Content-Type": content_type,
+          Authorization: "Basic " + btoa(api_key + ":" + secret_key),
+        },
+        httpsAgent: new https.Agent({
+          rejectUnauthorized: false,
+        }),
+      }
+    )
+    .then((response) => console.log(response, api_key + ":" + secret_key))
+    .catch((error) => console.error(error.response.data));
+}
 
 module.exports = {
   sendSms,

@@ -1,5 +1,5 @@
 const Tenant = require("../models/tenantModel");
-const { sendEmail } = require("../utils/sendEmail");
+const { sendSms } = require("../utils/sendSms");
 const PDFDocument = require("pdfkit-table");
 
 // function to generate passwords for registered tenants
@@ -58,14 +58,17 @@ const postTenantRegister = async (req, res) => {
   }
 
   // check if there is meter number with same house number
-  const isHouseTaken = await Tenant.findOne({ meter_number: meter_number , house_number: house_number });
+  const isHouseTaken = await Tenant.findOne({
+    meter_number: meter_number,
+    house_number: house_number,
+  });
 
-  
   if (isHouseTaken) {
     return res.render("owner_tenants_register", {
       user,
       currentPage: "tenants",
-      message: "The house number is already assigned to a tenant with the same meter number.",
+      message:
+        "The house number is already assigned to a tenant with the same meter number.",
     });
   }
 
@@ -87,20 +90,19 @@ const postTenantRegister = async (req, res) => {
     await new_tenant.save();
     const loginUrl = `${process.env.FRONTEND_URL}/tenants_account/login`;
 
-    const subject = "EnergyQuota - Tenant account credentials.";
-    const context = {
-      name,
-      email,
-      password,
-      loginUrl,
-      landlord: user.name,
-    };
-    const template = "new_tenant";
+    // Send sms to the tenant
+    const message = `Hi ${name}, 
+your EnergyQuota account is set.
 
-    const send_to = email;
-    const sent_from = process.env.EMAIL_USER;
+Email: ${email}, Password: ${password} 
 
-    await sendEmail(subject, template, context, send_to, sent_from);
+Login link: ${loginUrl} 
+
+Please keep this information secure.
+    `;
+    const tenantPhoneNumber = phone_number;
+
+    await sendSms(message, tenantPhoneNumber);
     return res.render("owner_tenants_register", {
       user,
       currentPage: "tenants",

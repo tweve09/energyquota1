@@ -56,9 +56,9 @@ services:
     environment:
       - MONGO_DB_URI=mongodb://EmmanuelTweve09:Elementrix2030@mongo-db:27017/energyQuotaDB?authSource=admin
       - SESSION_SECRETE="Elementrix2030"
-      - EMAIL_HOST=smtp.gmail.com
-      - EMAIL_USER=info.energyquota@gmail.com
-      - EMAIL_PASSWORD=leko nrsp sttb zoxm
+      - BEEM_API_KEY="2da0f79031413d9e"
+      - BEEM_SECRETE_KEY="ZWJmMmNhZGE4MTUyOWQ5ZTM1ZGVmNWM4ZWM2OTZkOTdhNGNmMzVlNzBmMGM0MDhlYWNiMmNlNDdkY2Y2YTQ2ZQ=="
+      - BEEM_SOURCE_ADRESS="RENTSPARK"
       - FRONTEND_URL=https://www.phociexperttechnologies.co.tz
       - VIRTUAL_HOST=www.phociexperttechnologies.co.tz, phociexperttechnologies.co.tz
       - LETSENCRYPT_HOST=www.phociexperttechnologies.co.tz,phociexperttechnologies.co.tz
